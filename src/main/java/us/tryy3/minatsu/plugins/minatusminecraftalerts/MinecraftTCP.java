@@ -65,8 +65,11 @@ public class MinecraftTCP extends Thread {
     }
 
     public Server getServerByName(String name) {
+        System.out.println("Server count: " + servers.size());
+        System.out.println("Server: " + name);
         for (Server server : servers.values()) {
-            if (server.getName().equalsIgnoreCase(name)) return server;
+            System.out.println("Server name: " + server.getMinecraftName());
+            if (server.getMinecraftName().equalsIgnoreCase(name)) return server;
         }
         return null;
     }
@@ -102,6 +105,8 @@ public class MinecraftTCP extends Thread {
             while (true) {
                 try {
                     String msg = in.readLine();
+
+                    System.out.println(msg);
 
                     JsonObject json = new JsonParser().parse(msg).getAsJsonObject();
 
